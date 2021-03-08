@@ -4,6 +4,6 @@ import { get } from '../../services/api'
 export const fetchWeather = createAsyncThunk(
     'Weather/fetchWeather',
     async (coors: { lat: number, lon: number }) => {
-        return await get<any>(`onecall`, coors)
+        return await get<any>(`onecall`, { ...coors, lang: 'pt_br', units: 'metric' })
     }
 )

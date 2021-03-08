@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { WeatherState, Weather } from './weather.interfaces'
+import { stat } from 'node:fs'
+import { WeatherState, Weather, Current } from './weather.interfaces'
 import { fetchWeather } from './weather.thunks'
 
 export const initialState: WeatherState = {
     weather: {} as Weather,
+    current: {} as Current,
     loading: false
 }
 
@@ -20,6 +22,7 @@ const weatherSlice = createSlice({
         })
         builder.addCase(fetchWeather?.fulfilled, (state, action) => {
             state.weather = action.payload
+            state.current = action.payload.current
             state.loading = false
         })
         builder.addCase(fetchWeather?.rejected, (state) => {
