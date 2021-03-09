@@ -29,7 +29,7 @@ const WetherNextDays: React.FC = () => {
                 </Col>
             </Row>
 
-            <Row className={'text-center'} >
+            <Row className={'text-center'}>
                 <Col md={1}></Col>
                 {weatherDays.map((item: WeatherDay, index: Number) => {
                     if (index > 0 && index < 6)

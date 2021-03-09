@@ -26,8 +26,8 @@ const Home: React.FC = () => {
         });
     }
 
-    const renderTitle = () => {
-        return (
+    return (
+        <Container>
             <Row className={'text-center'} style={{ color: 'white', fontWeight: 'bold', fontSize: '2.5em' }}>
                 <Col md={1}></Col>
                 <Col md={9}>
@@ -41,12 +41,6 @@ const Home: React.FC = () => {
                     </p>
                 </Col>
             </Row>
-        )
-    }
-
-    return (
-        <Container>
-            {renderTitle()}
             <WetherReport />
             <WetherAlert />
             <WetherNextDays />
