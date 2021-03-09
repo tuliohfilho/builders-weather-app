@@ -5,9 +5,9 @@
 
 ## Sobre o desafio
 
-1. Informar os dados climáticos de acordo com a localização do usuário
-2. Mostrar informaçõs de endereço do usuário a partir de sua localização
-2. É permitido atualizar os dados ao clicar no botão de `atualizar informações`
+1. Obter os dados climáticos do usuário de acordo com a localização obtida no navedagor.
+2. Mostrar os 5 dias seguintes e a temperatura.
+2. Atualizar os dados ao clicar no icone de atualização
 
 ## Iniciando a aplicação React.Js
 
