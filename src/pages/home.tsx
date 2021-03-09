@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchWeather } from '../slices/weather/weather.thunks'
 import { RootState } from '../store'
 import { Container, Row, Col } from 'react-bootstrap'
+import { format } from 'date-fns'
 import { Wind, Sun, CloudRainHeavyFill, ArrowRepeat } from 'react-bootstrap-icons';
+import { WeatherDay } from '../slices/weather/weather.interfaces'
 
 const Home: React.FC = () => {
 
     const dispatch = useDispatch()
 
     //Estado do Reducer
-    const { weather, current, alerts } = useSelector((application: RootState) => application.weather)
+    const { weather, current, alerts, weatherDays } = useSelector((application: RootState) => application.weather)
+
+    console.log(weatherDays)
 
     useEffect(() => {
         //disparando action para  buscar weather
-        // dispatch(fetchWeather({ lat: 1, lon: 2 }))
         dispatch(fetchWeather({ lat: -3.734408, lon: -38.597437 }))
     }, [])
 
@@ -24,15 +27,15 @@ const Home: React.FC = () => {
 
     const renderTitle = () => {
         return (
-            <Row className={'text-center'} style={{ marginTop: '15px', color: 'white' }}>
+            <Row className={'text-center'} style={{ color: 'white', fontWeight: 'bold', fontSize: '2.5em' }}>
                 <Col md={1}></Col>
                 <Col md={9}>
-                    <p style={{ fontWeight: 'bold', fontSize: '2.5em' }}>
+                    <p>
                         BUILDERS WEATHER TESTE
                     </p>
                 </Col>
                 <Col md={1} onClick={refreshWeatherReport}>
-                    <p style={{ fontWeight: 'bold', fontSize: '2.5em', cursor: 'pointer' }}>
+                    <p style={{ cursor: 'pointer' }}>
                         <ArrowRepeat />
                     </p>
                 </Col>
@@ -42,7 +45,7 @@ const Home: React.FC = () => {
 
     const renderWeatherReport = () => {
         return (
-            <Row style={{ marginTop: '15px', color: 'white' }}>
+            <Row style={{ color: 'white' }}>
                 <Col md={1}></Col>
                 <Col className={'text-center'} md={5}>
                     <Row>
@@ -51,7 +54,7 @@ const Home: React.FC = () => {
                             <hr style={{ backgroundColor: 'white' }}></hr>
                         </Col>
                     </Row>
-                    <Row className='align-items-center' style={{ minHeight: '150px', paddingTop: '15px' }}>
+                    <Row className='align-items-center' style={{ minHeight: '150px' }}>
                         <Col md={6}>
                             {!current.rain && <Sun size={150} /> || <CloudRainHeavyFill size={150} />}
                         </Col>
@@ -99,6 +102,12 @@ const Home: React.FC = () => {
             )
     }
 
+    const getDate = (dt: Number): string => {
+        const dtFull = dt as number * 1000;
+
+        return format(new Date(dtFull), 'dd/MM');
+    }
+
     const renderNextDays = () => {
         return (
             <>
@@ -109,23 +118,32 @@ const Home: React.FC = () => {
                         <hr style={{ backgroundColor: 'white' }}></hr>
                     </Col>
                 </Row>
-                <Row className={'text-center'} style={{ marginTop: '20px' }}>
+
+                <Row className={'text-center'} >
                     <Col md={1}></Col>
-                    <Col md={2} style={{ color: 'white', fontWeight: 'bold' }}>
-                        <p className={'bkCard'} style={{ minHeight: '250px' }}>SEGUNDA</p>
-                    </Col>
-                    <Col md={2} style={{ color: 'white', fontWeight: 'bold' }}>
-                        <p className={'bkCard'} style={{ minHeight: '250px' }}>SEGUNDA</p>
-                    </Col>
-                    <Col md={2} style={{ color: 'white', fontWeight: 'bold' }}>
-                        <p className={'bkCard'} style={{ minHeight: '250px' }}>SEGUNDA</p>
-                    </Col>
-                    <Col md={2} style={{ color: 'white', fontWeight: 'bold' }}>
-                        <p className={'bkCard'} style={{ minHeight: '250px' }}>SEGUNDA</p>
-                    </Col>
-                    <Col md={2} style={{ color: 'white', fontWeight: 'bold' }}>
-                        <p className={'bkCard'} style={{ minHeight: '250px' }}>SEGUNDA</p>
-                    </Col>
+                    {weatherDays.map((item: WeatherDay, index: Number) => {
+                        if (index > 0 && index < 6)
+                            return (
+                                <Col md={2} className={'bkCard'} style={{ color: 'white', fontWeight: 'bold' }} key={item.dt.toString()}>
+                                    <Row>
+                                        <Col md={12} style={{ minHeight: '50px' }}>
+                                            {getDate(item.dt)}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} style={{ minHeight: '80px' }}>
+                                            {!item.rain && <Sun size={80} /> || <CloudRainHeavyFill size={80} />}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} style={{ minHeight: '50px', marginTop: '25px' }}>
+                                            <p style={{ fontWeight: 'bold', fontSize: '1.5em' }}>{item.temp.day}ºC</p>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            )
+                    })
+                    }
                 </Row>
             </>
         )

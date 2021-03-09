@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { WeatherState, Weather, Current, Alert } from './weather.interfaces'
+import { WeatherState, Weather, Current, Alert, WeatherDay } from './weather.interfaces'
 import { fetchWeather } from './weather.thunks'
 
 export const initialState: WeatherState = {
     weather: {} as Weather,
     current: {} as Current,
     alerts: [] as Array<Alert>,
+    weatherDays: [] as Array<WeatherDay>,
     loading: false
 }
 
@@ -24,6 +25,7 @@ const weatherSlice = createSlice({
             state.weather = action.payload
             state.alerts = action.payload.alerts
             state.current = action.payload.current
+            state.weatherDays = action.payload.daily
             state.loading = false
         })
         builder.addCase(fetchWeather?.rejected, (state) => {

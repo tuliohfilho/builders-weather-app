@@ -18,6 +18,6 @@ code {
 }
 
 .bkCard {
-  border: 0.5px solid rgb(231, 178, 178);
-  border-radius: 5px;
+  border-right: 0.5px solid rgb(231, 178, 178);
+  /* border-radius: 5px; */
 }

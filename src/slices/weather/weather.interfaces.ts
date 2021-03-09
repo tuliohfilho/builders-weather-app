@@ -4,6 +4,16 @@ export interface Weather {
     timezone: String
 }
 
+export interface DayTemp {
+    day: Number
+}
+
+export interface WeatherDay {
+    dt: Number
+    temp: DayTemp
+    rain: Number
+}
+
 export interface Current {
     temp: Number
     wind_speed: Number
@@ -23,6 +33,7 @@ interface State {
     loading: boolean
     current: Current
     alerts: Array<Alert>
+    weatherDays: Array<WeatherDay>
 }
 
 export type WeatherState = State
