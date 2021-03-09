@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+<h3 align="center">
+  Teste para builders
+</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## :rocket: Sobre o desafio
 
-In the project directory, you can run:
+1. Informar os dados climáticos de acordo com a localização do usuário
+2. Mostrar informaçõs de endereço do usuário a partir de sua localização
+2. É permitido atualizar os dados ao clicar no botão de `atualizar informações`
 
-### `yarn start`
+## :clipboard: Iniciando a aplicação React.Js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone o repositório com `https://github.com/tulionhfilho/builders-weather-app.git`
+2. Abra um terminal e entre na pasta `cd builders-weather-app`
+3. Instale todas as dependencias com o comando `yarn install` ou `npm install`
+4. Digite `yarn start` ou `npm start`  para iniciar o projeto
+5. Uma nova aba do navegador abrirá url http://localhost:3000
+6. É preciso permitir que a aplicação tenha acesso a sua localização
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## :clipboard: Algumas informações de arquitetura de arquivos
+`./src` -- Arquivos `.tsx` de configuração de libs
 
-### `yarn test`
+`./src/assets` -- Arquivos que não são códigos subdivididos de acordo com sua funcionalidade
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`./src/pages` -- Arquivos `tsx` que descrevem componentes React que representam uma página acessável
 
-### `yarn build`
+`./src/slices` -- Arquivos `.tsx` arquivo responsável por armazenar informação global que pode ser compartilhada em algum outro componente
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## :hammer: Ferramentas utilizadas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 📄 **Type script** - Projeto criado com template typescript 
+- 📄 **Axios** - Biblioteca Javascript para fazer requisições http
+- 📄 **date-fns** Lib utilizada para converter e formatar dadas
+- 📄 **bootstrap** Lib utilizada para estilizar os componentes
+- 📄 **toolkit** Para armazenamento de dados globais (Redux)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+</h1>
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
