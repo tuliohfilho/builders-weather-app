@@ -10,19 +10,19 @@ import { WeatherDay } from '../slices/weather/weather.interfaces'
 const Home: React.FC = () => {
 
     const dispatch = useDispatch()
-
-    //Estado do Reducer
+    
     const { weather, current, alerts, weatherDays } = useSelector((application: RootState) => application.weather)
 
-    console.log(weatherDays)
-
     useEffect(() => {
-        //disparando action para  buscar weather
-        dispatch(fetchWeather({ lat: -3.734408, lon: -38.597437 }))
+        refreshWeatherReport();
     }, [])
 
     const refreshWeatherReport = () => {
-        dispatch(fetchWeather({ lat: 1, lon: 2 }))
+        navigator.geolocation.getCurrentPosition((pos: any) => {
+            const { latitude, longitude } = pos.coords;
+
+            dispatch(fetchWeather({ lat: latitude, lon: longitude }))
+        });
     }
 
     const renderTitle = () => {
